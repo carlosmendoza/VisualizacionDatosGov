@@ -12,9 +12,17 @@ class Busqueda extends React.Component {
   constructor(props)
   {
     super(props)
-    this.setState({ruta:''})
-    this.onChange = this.onChange.blind(this)
+    this.setState({ruta:'', datos:[]});
+    this.onChange = this.onChange.bind(this);
+    this.metodoAux = this.metodoAux.bind(this);
 
+  }
+  metodoAux()
+  {
+    var nv = navio(this.myIn.value,600);
+    var dataAux = this.s
+    nv.data(data);
+    nv.addAllAtribs()
   }
   metodoNavio()
   {
@@ -23,11 +31,10 @@ class Busqueda extends React.Component {
       .then(res => res.json())
       .then(data => {
           console.log(data)
+          this.state({'data':data})
 
-      });
-    var nv = navio(this.myIn.value,600);
-    //nv.data(data);
-    //nv.addAllAtribs()
+      }, this.metodoAux());
+
   }
   render()
   {
