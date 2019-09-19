@@ -45,7 +45,7 @@ class Lista extends React.Component
          <br></br>
          <br></br>
          <h2>Historial De Búsqueda</h2>
-         {this.state.listaurl.map(url=> <div key={url} id={url} onClick={()=>this.seleccion(url)}>{url}</div>)}
+         {this.state.listaurl.map((url,i)=> <div key={i} id={url} onClick={()=>this.seleccion(url)}>{url}</div>)}
      </div>)
     }
 

@@ -12,10 +12,8 @@ componentDidUpdate()
 {
     let dataAux = this.props.data
     let nv = navio(this.myDiv,600);
-    console.log(dataAux)
     if(dataAux!==undefined)
     {
-    console.log(dataAux)
     nv.data(dataAux);
     nv.addAllAttribs();
     }

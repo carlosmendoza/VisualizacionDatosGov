@@ -10,10 +10,12 @@ class Busqueda extends React.Component {
   constructor(props)
   {
     super(props);
-    this.state ={url:'', datos:[]};
+    this.state ={url:'', "datos":[]};
     this.metodoNavio = this.metodoNavio.bind(this);
+    this.metodoNavio2 = this.metodoNavio2.bind(this);
     this.onChange = this.onChange.bind(this);
     this.agregarNuevosDatos = this.agregarNuevosDatos.bind(this);
+
   }
   onChange()
   {
@@ -24,16 +26,16 @@ class Busqueda extends React.Component {
   {
     let url ="";
     if(pUrl)
-    {url = pUrl}
-    else{
-      url = document.getElementsByName('url')[0].value;
+    {
+      url = pUrl;
     }
-    
-    console.log("metodo navio", url)
+    else{
+      url = this.state['url'];
+    }
     fetch(url)
       .then(res => res.json())
       .then(data => {
-          console.log(data)
+          
           this.setState({'data':data},()=>this.almacenarUrl(url))
 
       });
@@ -41,7 +43,7 @@ class Busqueda extends React.Component {
   }
   almacenarUrl(pUrl)
   {
-    console.log("metodoAlmace",pUrl)
+  
     fetch(
       "http://localhost:5000/historial",
       {
@@ -58,42 +60,25 @@ class Busqueda extends React.Component {
   metodoNavio2()
   {
     let url = document.getElementsByName('url')[0].value;
-    let tamanioDataSet =0;
-    
-    
+    let tamanioDataSet =-1;
     fetch(url+"?$select=count(*)")
     .then(res => res.json())
     .then(data => {
-        
-        tamanioDataSet = data[0]['count']
-        console.log("tamaño",tamanioDataSet);        
-        this.setState({'tamanio':tamanioDataSet},()=>this.aux(url,0))
+        tamanioDataSet = data[0]['count'];
+       this.agregarNuevosDatos(url,tamanioDataSet)
+       this.almacenarUrl()
     });
-
   }
-  agregarNuevosDatos(url, inicial)
+
+  agregarNuevosDatos(url, tamanio)
   {
-    console.log("aaaa",this.state['tamanio'])
-    if(inicial<this.state['tamanio'])
-    {
-    console.log("entró")
-    let arregloAnterior = this.state['datos']
-    fetch(url+"?$limit=1000&$offset="+inicial)
+    fetch(url+"?$limit="+tamanio+"&$offset="+0)
       .then(res => res.json())
       .then(data => {
-          let nuevosDatos = arregloAnterior.push(data);
-          console.log("entroooo")
-          this.setState({'datos':nuevosDatos}, this.aux(url,inicial+1000));
+          this.setState({'data':data});
       });
-    }
-       
-    
   }
-  aux(a,b)
-  {
-    console.log("auxxx",a,b)
-    this.agregarNuevosDatos(a,b)
-  }
+ 
   getResponse(result)
   {
    this.metodoNavio(result);
@@ -106,7 +91,7 @@ class Busqueda extends React.Component {
         <input type="text" name="url" onChange={this.onChange}>
         </input>
         <br></br><br></br>
-        <button onClick={this.metodoNavio}>ACEPTAR</button>
+        <button onClick={this.metodoNavio2}>ACEPTAR</button>
         <Navio data={this.state['data']}></Navio>
         <Lista callback={this.getResponse.bind(this)}></Lista>
         
