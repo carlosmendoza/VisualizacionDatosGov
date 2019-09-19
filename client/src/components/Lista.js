@@ -22,7 +22,7 @@ class Lista extends React.Component
     {
     let listaUrl = []
     let listaCount =[]
-    fetch("http://localhost:5000/historial/consulta")
+    fetch("https://datosgov.herokuapp.com/historial/consulta")
     .then(res => res.json())
     .then(data => {
         if(data!=null)

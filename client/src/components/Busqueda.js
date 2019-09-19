@@ -46,7 +46,7 @@ class Busqueda extends React.Component {
   {
   
     fetch(
-      "http://localhost:5000/historial",
+      "https://datosgov.herokuapp.com/historial",
       {
         method: "POST",
         body: JSON.stringify({ "url":pUrl}),
