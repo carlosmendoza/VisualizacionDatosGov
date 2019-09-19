@@ -1,32 +1,24 @@
 {
-  "name": "datogoc",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "navio": "0.0.60",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
-  },
+  "name": "visualizaciondatosgovback",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "all": "node app.js && cd client && npm start",
+    "dev": "concurrently \"node app.js\" \"cd client && npm start\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "author": "Carlos Alberto Mendoza Patalagua",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.4.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-mongo-db": "^2.0.4",
+    "mongodb": "^3.3.2",
+    "morgan": "^1.9.1"
   }
 }
