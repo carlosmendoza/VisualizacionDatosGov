@@ -57,9 +57,17 @@ class Busqueda extends React.Component {
     );
   }
 
-  metodoNavio2()
+  metodoNavio2(pUrl)
   {
-    let url = document.getElementsByName('url')[0].value;
+    let url ="";
+    if(pUrl)
+    {
+      url = pUrl;
+    }
+    else{
+      url = document.getElementsByName('url')[0].value;
+    
+    }
     let tamanioDataSet =-1;
     fetch(url+"?$select=count(*)")
     .then(res => res.json())
@@ -82,7 +90,7 @@ class Busqueda extends React.Component {
  
   getResponse(result)
   {
-   this.metodoNavio(result);
+   this.metodoNavio2(result);
   } 
   render()
   {

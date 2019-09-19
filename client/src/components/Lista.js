@@ -5,7 +5,7 @@ class Lista extends React.Component
     constructor(props)
     {
         super(props);
-        this.state={'listaurl':[]};
+        this.state={'listaurl':[], 'listaCount':[]};
         this.llenarLista = this.llenarLista.bind(this);
         this.actualizar = this.actualizar.bind(this);
     }
@@ -21,13 +21,15 @@ class Lista extends React.Component
     llenarLista()
     {
     let listaUrl = []
+    let listaCount =[]
     fetch("http://localhost:5000/historial/consulta")
     .then(res => res.json())
     .then(data => {
         if(data!=null)
         {
         data.forEach(function(element){
-        listaUrl.push("Url: "+element['_id']+" # veces cosultado:"+element['count']);
+        listaUrl.push(element['_id']);
+        listaCount.push(element['count'])
         })
         this.actualizar(listaUrl);
         }
@@ -46,9 +48,9 @@ class Lista extends React.Component
          <br></br>
          <h2>Historial De Búsqueda</h2>
          {this.state.listaurl.map((url,i)=> <div key={i} id={url} onClick={()=>this.seleccion(url)}>{url}</div>)}
+         
      </div>)
     }
 
 }
 export default Lista
-
