@@ -35,6 +35,6 @@ Ejecutar ambos servidores
 * npm run dev  
 # Componente creativo:
 Al lado derecho de cada uno de los enlaces del historial se puede observar cuantas veces ha sido consutada esa API en particular. (Es necesario recargar la página para que este valor se actualice).  
-# Licencia  
+# Licencia:
 Este proyecto se encuentra bajo la licencia MIT
 
