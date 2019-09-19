@@ -14,7 +14,8 @@
   "author": "Carlos Alberto Mendoza Patalagua",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^6.4.0"
+    "eslint": "^6.4.0",
+    "nodemon": "^1.19.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -24,6 +25,6 @@
     "express-mongo-db": "^2.0.4",
     "mongodb": "^3.3.2",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.2"
+    
   }
 }
