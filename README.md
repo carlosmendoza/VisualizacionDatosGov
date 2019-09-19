@@ -9,8 +9,10 @@ Permitirle a los usuarios la visualización de un dataset de la página datos.go
 
 # Como desplegar la aplicación  
 Instalar las dependencias del servidor backend  
+
  
-* npm install
+* npm install  
+
 Instalar las dependencias del servidor frontend  
  
 * npm run client-install  
