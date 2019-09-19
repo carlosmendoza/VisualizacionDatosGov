@@ -21,13 +21,13 @@ class Lista extends React.Component
     llenarLista()
     {
     let listaUrl = []
-    fetch("http://localhost:5000/historial")
+    fetch("http://localhost:5000/historial/consulta")
     .then(res => res.json())
     .then(data => {
         if(data!=null)
         {
         data.forEach(function(element){
-        listaUrl.push(element['url']);
+        listaUrl.push("Url: "+element['_id']+" # veces cosultado:"+element['count']);
         })
         this.actualizar(listaUrl);
         }
