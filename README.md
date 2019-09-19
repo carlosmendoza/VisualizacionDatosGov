@@ -1,4 +1,5 @@
 # VisualizacionDatosGov
+Esta página permite visualizar datasets de la página de datos abiertos datos.gov haciendo uso de Navio.dev, el usuario solo debe ingresar en enlace de la API que desea.
 
 # Autor: 
 Carlos Alberto Mendoza Patalagua
@@ -7,6 +8,10 @@ Carlos Alberto Mendoza Patalagua
 Permitirle a los usuarios la visualización de un dataset de la página datos.gov.co
 
 # Como desplegar la aplicación
-* git clone https://github.com/carlosmendoza/VisualizacionDatosGov
+# Instalar las dependencias del servidor backend
 * npm install
-* npm run
+# Instalar las dependencias del servidor frontend
+* npm run client-install
+# Ejecutar ambos servidores
+* npm run dev
+
