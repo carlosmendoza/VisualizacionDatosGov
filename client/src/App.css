@@ -1,0 +1,15 @@
+.App{
+    padding: 50px;
+    background: #0288d1;
+    color: white;
+}
+.boton{
+    background: #005b9f;
+    color: white;
+}
+.navio{
+    margin-top: 30px;
+}
+.input{
+    color:black;
+}

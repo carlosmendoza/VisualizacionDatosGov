@@ -28,7 +28,7 @@ class Lista extends React.Component
         if(data!=null)
         {
         data.forEach(function(element){
-        listaUrl.push(element['_id']);
+        listaUrl.push(element['_id']+"("+element['count']+")");
         listaCount.push(element['count'])
         })
         this.actualizar(listaUrl);
