@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import Navio from "./Navio";
+import Lista from './Lista';
 
 
 class Busqueda extends React.Component {
@@ -19,10 +20,15 @@ class Busqueda extends React.Component {
     let url = document.getElementsByName('url')[0].value;
     this.setState({'url':url});
   }
-  metodoNavio()
+  metodoNavio(pUrl)
   {
-
-    let url = document.getElementsByName('url')[0].value
+    let url ="";
+    if(pUrl)
+    {url = pUrl}
+    else{
+      url = document.getElementsByName('url')[0].value;
+    }
+    
     console.log("metodo navio", url)
     fetch(url)
       .then(res => res.json())
@@ -78,7 +84,6 @@ class Busqueda extends React.Component {
           let nuevosDatos = arregloAnterior.push(data);
           console.log("entroooo")
           this.setState({'datos':nuevosDatos}, this.aux(url,inicial+1000));
-
       });
     }
        
@@ -89,6 +94,10 @@ class Busqueda extends React.Component {
     console.log("auxxx",a,b)
     this.agregarNuevosDatos(a,b)
   }
+  getResponse(result)
+  {
+   this.metodoNavio(result);
+  } 
   render()
   {
       return(<div>
@@ -99,6 +108,7 @@ class Busqueda extends React.Component {
         <br></br><br></br>
         <button onClick={this.metodoNavio}>ACEPTAR</button>
         <Navio data={this.state['data']}></Navio>
+        <Lista callback={this.getResponse.bind(this)}></Lista>
         
       </div>);
   }

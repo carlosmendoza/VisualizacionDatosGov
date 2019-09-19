@@ -16,6 +16,7 @@ class Lista extends React.Component
     seleccion(url)
     {
         console.log("url seleccionado", url);
+        this.props.callback(url)
     }
     llenarLista()
     {
@@ -36,6 +37,7 @@ class Lista extends React.Component
     {
       this.setState({'listaurl':lista});
     }
+
     render()
     {
     
