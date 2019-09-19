@@ -82,7 +82,7 @@ class Busqueda extends React.Component {
         </input>
         <button onClick={this.metodoNavio}>ACEPTAR</button>
         <Navio data={this.state['data']}></Navio>
-        <Lista></Lista>
+        
       </div>);
   }
 }
