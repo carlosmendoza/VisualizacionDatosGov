@@ -25,20 +25,24 @@ class Busqueda extends React.Component {
   metodoNavio(pUrl)
   {
     let url ="";
-    if(pUrl)
+    if(pUrl!=undefined)
     {
       url = pUrl;
+      console.log("llego URL")
     }
     else{
-      url = this.state['url'];
+      url = document.getElementsByName('url')[0].value;
+    
     }
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-          
-          this.setState({'data':data},()=>this.almacenarUrl(url))
-
-      });
+    let tamanioDataSet =-1;
+    fetch(url+"?$select=count(*)")
+    .then(res => res.json())
+    .then(data => {
+        tamanioDataSet = data[0]['count'];
+        this.almacenarUrl(url)
+       this.agregarNuevosDatos(url,tamanioDataSet)
+       
+    });
 
   }
   almacenarUrl(pUrl)
@@ -57,18 +61,12 @@ class Busqueda extends React.Component {
     );
   }
 
-  metodoNavio2(pUrl)
+  metodoNavio2()
   {
-    let url ="";
-    if(pUrl)
-    {
-      url = pUrl;
-    }
-    else{
-      url = document.getElementsByName('url')[0].value;
     
-    }
-    let tamanioDataSet =-1;
+    let url = document.getElementsByName('url')[0].value;
+    
+   let tamanioDataSet =-1;
     fetch(url+"?$select=count(*)")
     .then(res => res.json())
     .then(data => {
@@ -90,7 +88,7 @@ class Busqueda extends React.Component {
  
   getResponse(result)
   {
-   this.metodoNavio2(result);
+   this.metodoNavio(result);
   } 
   render()
   {
