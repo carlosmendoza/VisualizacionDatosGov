@@ -7,10 +7,7 @@ import Busqueda from './components/Busqueda';
 function App() {
   return (
     <div className="App">
-
         <Busqueda></Busqueda>
-     
-
     </div>
   );
 }
