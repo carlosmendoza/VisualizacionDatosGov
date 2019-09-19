@@ -5,32 +5,45 @@ class Lista extends React.Component
     constructor(props)
     {
         super(props);
-        this.state={'listaurl':[]}
+        this.state={'listaurl':[]};
+        this.llenarLista = this.llenarLista.bind(this);
+        this.actualizar = this.actualizar.bind(this);
     }
-    componentWillMount()
+    componentDidMount()
     {
-        let listaUrl = []
-        fetch("http://localhost:5000/historial")
-        .then(res => res.json())
-        .then(data => {
-            console.log("basededatos",data)
-          if(data!=null)
-          {
-          data.forEach(function(element){
-            
-            listaUrl.push(element['url'])
-          })
-          this.setState({'listaUrl':listaUrl})
-        
-  
-  
-        }});
+        this.llenarLista();
     }
-    render( )
+    seleccion(url)
     {
-    const { listaurl } = this.state;
+        console.log("url seleccionado", url);
+    }
+    llenarLista()
+    {
+    let listaUrl = []
+    fetch("http://localhost:5000/historial")
+    .then(res => res.json())
+    .then(data => {
+        if(data!=null)
+        {
+        data.forEach(function(element){
+        listaUrl.push(element['url']);
+        })
+        this.actualizar(listaUrl);
+        }
+    });
+    }
+    actualizar(lista)
+    {
+      this.setState({'listaurl':lista});
+    }
+    render()
+    {
+    
      return(<div>
-         {listaurl.map(url=> <h1>{url}</h1>)}
+         <br></br>
+         <br></br>
+         <h2>Historial De Búsqueda</h2>
+         {this.state.listaurl.map(url=> <div key={url} id={url} onClick={()=>this.seleccion(url)}>{url}</div>)}
      </div>)
     }
 

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-// Get all
 router.get("/", (req, res) => {
   req.db
     .collection("historialCollection")
@@ -13,7 +12,6 @@ router.get("/", (req, res) => {
     });
 });
 
-// Creating one
 router.post("/", (req, res) => {
     req.db.collection("historialCollection").insert(req.body, (err, result) => {
       if (err) return res.status(400).json({ message: err.message });

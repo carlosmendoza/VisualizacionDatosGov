@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
 import Navio from "./Navio";
-import Lista from './Lista';
 
 
 class Busqueda extends React.Component {
@@ -29,10 +28,25 @@ class Busqueda extends React.Component {
       .then(res => res.json())
       .then(data => {
           console.log(data)
-          this.setState({'data':data})
+          this.setState({'data':data},()=>this.almacenarUrl(url))
 
       });
 
+  }
+  almacenarUrl(pUrl)
+  {
+    console.log("metodoAlmace",pUrl)
+    fetch(
+      "http://localhost:5000/historial",
+      {
+        method: "POST",
+        body: JSON.stringify({ "url":pUrl}),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }
+    );
   }
 
   metodoNavio2()
@@ -78,8 +92,11 @@ class Busqueda extends React.Component {
   render()
   {
       return(<div>
+        <label>Ingrese la URL del data set que quiere visualizar</label>
+        <br></br><br></br>
         <input type="text" name="url" onChange={this.onChange}>
         </input>
+        <br></br><br></br>
         <button onClick={this.metodoNavio}>ACEPTAR</button>
         <Navio data={this.state['data']}></Navio>
         
