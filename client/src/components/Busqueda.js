@@ -66,7 +66,7 @@ class Busqueda extends React.Component {
     .then(data => {
         tamanioDataSet = data[0]['count'];
        this.agregarNuevosDatos(url,tamanioDataSet)
-       this.almacenarUrl()
+       this.almacenarUrl(url)
     });
   }
 
